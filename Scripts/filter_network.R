@@ -22,17 +22,17 @@ quant_mfile = "quantification_masterfile.csv"
 uniprot_to_add_file = "ExtraProteinList.csv"
 
 #User Defined output
-network_files = paste0(dirname(quant_mfile),"/Network_files/")
+network_files = paste0(dirname(quant_mfile),"../Network_files/")
 
 #Input files
 ##uniprot names to ids
-uniprot_mapping = unique(read.table("../PhosphoDBs/uniprot-mapping.txt",stringsAsFactors = F, header = 1))
+uniprot_mapping = unique(read.table("../Input/PhosphoDBs/uniprot-mapping.txt",stringsAsFactors = F, header = 1))
 
 ##phosphositeplus
-pspl = data.frame(fread("../PhosphoDBs/Kinase_Substrate_Dataset.csv"),stringsAsFactors = F)
+pspl = data.frame(fread("../Input/PhosphoDBs/Kinase_Substrate_Dataset.csv"),stringsAsFactors = F)
 
 ##omni
-omni = data.frame(fread("../PhosphoDBs/Omnipath_enzyme_substrate_interactions_dataset.csv"),stringsAsFactors = F)
+omni = data.frame(fread("../Input/PhosphoDBs/Omnipath_enzyme_substrate_interactions_dataset.csv"),stringsAsFactors = F)
 
 #Input files processing
 metrics = read.csv(quant_mfile, stringsAsFactors = F)
