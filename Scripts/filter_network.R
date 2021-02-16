@@ -40,7 +40,7 @@ uniprot_to_add = read.table(uniprot_to_add_file, stringsAsFactors = F)
 row.names(uniprot_mapping)=make.names(uniprot_mapping$From,unique = T)
 names = read.csv(names_mfile,stringsAsFactors = F)
 names = names[,c(1:5)]
-
+project = unlist(strsplit(basename(quant_mfile),"\\."))[1]
 
 names$Membrane_Coordinate = gsub(" ","",names$Membrane_Coordinate)
 metrics$Membrane.Coordinates = gsub(" ","",metrics$Membrane.Coordinates)
@@ -183,7 +183,6 @@ quant_fixed = unique(as.data.frame(matrix(qlist,byrow = T, ncol=3),stringsAsFact
 
 mynetwork_to_write = mynetwork_fixed[,c("kinase_genename","kinase","modification","substrate_genename","substrate","sources")]
 
-project = unlist(strsplit(basename(quant_mfile),"\\."))[1]
 write.csv(mynetwork_to_write, paste0(network_files,project,"_extra_network.txt"), quote = F, row.names = F)
 write.csv(quant_fixed, paste0(network_files,project,"_extra_quantification.txt"), quote = F, row.names = F)
-write.csv(phosphodbs, paste0("../PhosphoDBs/phosphoDB.csv"), quote = F, row.names = F)
+write.csv(phosphodbs, paste0("../Input/PhosphoDBs/phosphoDB.csv"), quote = F, row.names = F)
